@@ -3,33 +3,32 @@
  * @param {number} extraCandies
  * @return {boolean[]}
  
- constraints:
+constraints:
  - 2 <= candies.length <= 100
  - 1 <= candies[i] <= 100
  - 1 <= extraCandies <= 50
  - time: O(n)
  - space: O(n)
  
- diagram:
+diagram:
  input: candies = [2,3,5,1,3], extraCandies = 3
  output: [true,true,true,false,true] 
  
+ - findMaxCandy - O(n)
  maxCandy = 5
           i 
- [2,3,5,1,3] O(n)
+ [2,3,5,1,3] 
  
-  i 
- [2,3,5,1,3]
-
+ - build result array - O(n)
  maxCandy = 5 
  extraCandy = 3
  needed = 5 - 3 = 2
  result = [true, true, true, false, true]
+ 
   i
  [2,3,5,1,3]
   
-  
- pcode:
+pcode:
 - create result variable
 - create maxCandy variable
 - loop thru candy arr find the max candy
@@ -45,7 +44,7 @@ var kidsWithCandies = function(candies, extraCandies) {
     let maxCandy = candies[0];
     
     for(let i = 1; i < candies.length; i++) {
-        const curr = candies[i];
+        let curr = candies[i];
         maxCandy = Math.max(curr, maxCandy);
     }
     
