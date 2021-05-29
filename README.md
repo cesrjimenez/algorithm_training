@@ -46,8 +46,3 @@ $ cd algorithm_training
 ### Author
 
 * **Cesar Jimenez** - [Github](https://github.com/Numbers88s)
-
-
-
-
-<div style="width:100%"><div style="height:0;padding-bottom:55.97189695550351%;position:relative;width:100%"><iframe allowfullscreen="" frameBorder="0" height="100%" src="https://giphy.com/embed/LMW1TJlWEhgkHaOxV1/video" style="left:0;position:absolute;top:0" width="100%"></iframe></div></div>
