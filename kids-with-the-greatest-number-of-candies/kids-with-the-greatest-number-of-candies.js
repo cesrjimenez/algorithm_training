@@ -39,6 +39,7 @@ pcode:
 - return result variable
  
  */
+
 var kidsWithCandies = function(candies, extraCandies) {
     let result = [];
     let maxCandy = candies[0];
