@@ -26,8 +26,8 @@ diagram:
 - currOne = 2
 - currTwo = 2
 
-     i
-[1,2,2,3,4,4,3]
+              i
+ [1,2,2,3,4,4,3]
                    L         R
  
                          1
