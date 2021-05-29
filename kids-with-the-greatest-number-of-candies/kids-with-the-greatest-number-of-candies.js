@@ -34,7 +34,7 @@ pcode:
 - loop thru candy arr find the max candy
 - loop thru candy arr
     - create needed variable
-    - if maxCandy minus curr candy is <=  to extraCandy 
+    - if maxCandy minus curr candy is <= to extraCandy 
         - push true to result variable otherwise push false
 - return result variable
  
