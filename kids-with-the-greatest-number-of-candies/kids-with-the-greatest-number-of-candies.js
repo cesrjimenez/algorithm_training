@@ -14,12 +14,12 @@ diagram:
  input: candies = [2,3,5,1,3], extraCandies = 3
  output: [true,true,true,false,true] 
  
- - findMaxCandy - O(n)
+ - findMaxCandy: O(n)
  maxCandy = 5
           i 
  [2,3,5,1,3] 
  
- - build result array - O(n)
+ - build result array: O(n)
  maxCandy = 5 
  extraCandy = 3
  needed = 5 - 3 = 2
@@ -31,7 +31,7 @@ diagram:
 pcode:
 - create result variable
 - create maxCandy variable
-- loop thru candy arr find the max candy
+- loop thru candy arr find the maxCandy
 - loop thru candy arr
     - create needed variable
     - if maxCandy minus curr candy is <= to extraCandy 
