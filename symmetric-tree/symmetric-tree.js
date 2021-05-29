@@ -12,8 +12,11 @@
  * @return {boolean}
   
 constraints:
--The number of nodes in the tree is in the range [1, 1000].
--100 <= Node.val <= 100
+- The number of nodes in the tree is in the range [1, 1000].
+- 100 <= Node.val <= 100
+- time: O(n)
+- space: O(n)
+
 
 digram:
 - input: root = [1,2,2,3,4,4,3]
@@ -28,8 +31,8 @@ digram:
 [1,2,2,3,4,4,3]
                    L         R
  
-                        1
-                   /         \
+                         1
+                    /         \
                    2           2
                  /   \        /  \
                 3    4       4    3
@@ -54,7 +57,7 @@ digram:
  
  */
 
-class Q {
+class Queue {
     constructor() {
         this.queue = [];
         this.size = 0;
@@ -72,8 +75,8 @@ class Q {
 }
 
 var isSymmetric = function(root) {
-    let qOne = new Q();
-    let qTwo = new Q();
+    let qOne = new Queue();
+    let qTwo = new Queue();
     
     qOne.enqueue(root);
     qTwo.enqueue(root);
