@@ -9,9 +9,9 @@
 <p align="center">This repository is automatically sync with LeetCode with the help of 
 <a style="color:#42e2b0;font-weight:600;" href="https://github.com/Numbers88s/LeetHub">Leethub</a> repository.
  </p>
+<br>
 
-
-## Getting Started
+## 🤓 Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine.
 
@@ -33,9 +33,16 @@ $ git clone git@github.com:Numbers88s/algorithm_training.git
 
 # Go into the repository
 $ cd algorithm_training
+
+# Start practicing!
+
 ```
 
+## 😜 How this repository makes me feel 
 
-## Author
+![rocky](https://media.giphy.com/media/1iTIr8gNil623qNO/giphy.gif)
+
+
+### Author
 
 * **Cesar Jimenez** - [Github](https://github.com/Numbers88s)
