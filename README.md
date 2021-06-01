@@ -45,4 +45,4 @@ $ cd algorithm_training
 
 ### Author
 
-* **Cesar Jimenez** - [Github](https://github.com/Numbers88s)
+* **Cesar Jimenez** - [Website](https://cesar-jimenez.com)
