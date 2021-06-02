@@ -5,6 +5,7 @@
  *     this.next = (next===undefined ? null : next)
  * }
  */
+
 /**
  * @param {ListNode} head
  * @return {ListNode}
@@ -34,15 +35,16 @@ p
  - edge case:
     - if no head return empty array
  - create previous set to null
- - create current set to root
+ - create current set to head
  - while current is not null
-    - create next set to root.next
+    - create next set to current.next
     - set current.next to previous
     - set previous to current
     - set current to next
  - return previous
   
  */
+
 var reverseList = function(head) {
     let previous = null;
     let current = head;
