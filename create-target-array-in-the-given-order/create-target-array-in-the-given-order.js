@@ -25,39 +25,16 @@ index = [0,1,2,2,1]
 pcode:
 - create target array
 - loop thru index array
-    - if target[index[i]] is undefined 
-        - target[index[i]] = nums[i]
-    - else
-        - target.splice(index[i], 0, nums[i]);
+    - target.splice(index[i], 0, nums[i]);
 - return target
 
  */
 var createTargetArray = function(nums, index) {
     let target = [];
     for (let i = 0; i < nums.length; i++) {
-        let idx = index[i];
-        let num = nums[i];
-        
-        target.splice(idx, 0, num);
-        
-//         if (!target[idx]) {
-//             target[idx] = num;
-//         } else {
-            
-//         }
+        target.splice(index[i], 0, nums[i]);
     }
     
     return target;
 };
-
-
-
-
-
-
-
-
-
-
-
 
