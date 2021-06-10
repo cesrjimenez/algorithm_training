@@ -67,7 +67,7 @@ boxes = "001011"
     - if curr is "1" push index to oneIdx
  - loop thru boxes
     - create sum variable
-    - loop thru onesIdx and add to sum the result of math.abs(i - j)
+    - loop thru onesIdx and add to sum the result of math.abs(i - onesIdx[j])
  - return result array
  
  */
