@@ -82,15 +82,11 @@ var minOperations = function(boxes) {
         }
     }
     
-    console.log('onesIdx', onesIdx);
-    console.log('boxes', boxes);
-    
     for (let i = 0; i < boxes.length; i++) {
         let sum = 0;
         for (let j = 0; j < onesIdx.length; j++) {
             sum += Math.abs(i - onesIdx[j]);
         }
-        console.log('sum', sum)
         result.push(sum);
     }
     
