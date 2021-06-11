@@ -32,9 +32,9 @@ pcode:
 - create result variable 
 - loop thru arr as i
     - loop thru arr as j
-        - if |arr[i] - arr[j]| >= a continue
+        - if |arr[i] - arr[j]| > a continue
             -  loop thru arr as k
-                - if |arr[j] - arr[k]| >= b continue
+                - if |arr[j] - arr[k]| > b continue
                 - if |arr[i] - arr[k]| <= c
                     - result++
 - return result
