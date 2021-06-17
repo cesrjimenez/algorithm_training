@@ -66,78 +66,42 @@ pcode:
 - call recursive function w/ 0
 - return result reverse
  */
-// var findOrder = function(numCourses, prerequisites) {
-//     let adjList = new Array(numCourses);
-//     for (let i = 0; i < numCourses; i++) {
-//         adjList[i] = [];
-//     }
-    
-//     for (let i = 0; i < prerequisites.length; i++) {
-//         let [to, from] = prerequisites[i];
-//         adjList[to].push(String(from));
-//     }
-
-//     let processing = new Array(numCourses);
-//     let result = [];
-    
-//     function dfs(curr) {
-//         if (processing[curr] === 1) {
-//             return true;
-//         }
-        
-//         if (processing[curr] === 2) {
-//             return false;
-//         }
-        
-//         processing[curr] = 1;
-        
-//         adjList[curr].forEach(neighbor => {
-//            if (dfs(neighbor)) return true;
-//         });
-        
-//         processing[curr] = 2;
-//         result.push(curr);
-//     }
-    
-//     for (var i = 0; i < numCourses; i++) {
-//         if (dfs(i)) return [];
-//     }
-    
-//     return result;
-// };
-
 var findOrder = function(numCourses, prerequisites) {
-    var graph = new Array(numCourses);
-    for (var i = 0; i < numCourses; i++) graph[i] = [];
-    var len = prerequisites.length;
-    for (var i = 0; i < len; i++) {
-        var item = prerequisites[i];
-        if (item[1] >= numCourses) return [];
-        graph[item[0]].push(item[1]);
+    let adjList = {};
+    for (let i = 0; i < numCourses; i++) {
+        adjList[i] = [];
     }
     
-    // empty: other
-    // 1: visiting
-    // 2: visited
-    var status = new Array(numCourses);
-    var result = [];
-    var hasCircle = function(current) {
-        if (status[current] === 1) return true;
-        if (status[current] === 2) return false;
+    for (let i = 0; i < prerequisites.length; i++) {
+        let [to, from] = prerequisites[i];
+        adjList[to].push(from);
+    }
+    
+    let processing = new Array(numCourses); // visiting = 1, visited = 2
+    let result = [];
+    
+    function dfs(curr) {
+        if (processing[curr] === 1) return true;
+        if (processing[curr] === 2) return false;
         
-        status[current] = 1; // start visiting
-        for (var next of graph[current]) {
-            if (hasCircle(next)) return true;
+        processing[curr] = 1;
+        let edge = adjList[curr];
+        for (let i = 0; i < edge.length; i++) {
+            if (dfs(edge[i])) return true;
         }
-        status[current] = 2; // end visiting
-        result.push(current);
+        
+        processing[curr] = 2;
+        result.push(curr);
+        return false;
     }
     
     for (var i = 0; i < numCourses; i++) {
-        if (hasCircle(i)) return [];
+        if (dfs(i)) return [];
     }
+    
     return result;
 };
+
 
 
 
