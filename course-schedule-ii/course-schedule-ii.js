@@ -66,44 +66,79 @@ pcode:
 - call recursive function w/ 0
 - return result reverse
  */
-var findOrder = function(numCourses, prerequisites) {
-    let adjList = {};
-    for (let i = 0; i < numCourses; i++) {
-        adjList[i] = [];
+// var findOrder = function(numCourses, prerequisites) {
+//     let adjList = {};
+//     for (let i = 0; i < numCourses; i++) {
+//         adjList[i] = [];
+//     }
+    
+//     for (let i = 0; i < prerequisites.length; i++) {
+//         let [to, from] = prerequisites[i];
+//         adjList[to].push(from);
+//     }
+    
+//     let processing = new Array(numCourses); // visiting = 1, visited = 2
+//     let result = [];
+    
+//     function dfs(curr) {
+//         if (processing[curr] === 1) return true;
+//         if (processing[curr] === 2) return false;
+        
+//         processing[curr] = 1;
+//         let edge = adjList[curr];
+//         for (let i = 0; i < edge.length; i++) {
+//             if (dfs(edge[i])) return true;
+//         }
+        
+//         processing[curr] = 2;
+//         result.push(curr);
+//         return false;
+//     }
+    
+//     for (var i = 0; i < numCourses; i++) {
+//         if (dfs(i)) return [];
+//     }
+    
+//     return result;
+// };
+
+const findOrder = (numCourses, prerequisites) => {
+    let adjList = {}
+    for (let i = 0; i < numCourses; i++) adjList[i] = [];
+    for (const [v, e] of prerequisites) {
+        adjList[e].push(v);
     }
     
+    let inDegrees = new Array(numCourses).fill(0);
     for (let i = 0; i < prerequisites.length; i++) {
-        let [to, from] = prerequisites[i];
-        adjList[to].push(from);
+        let [v] = prerequisites[i];
+        inDegrees[v]++;
     }
     
-    let processing = new Array(numCourses); // visiting = 1, visited = 2
-    let result = [];
-    
-    function dfs(curr) {
-        if (processing[curr] === 1) return true;
-        if (processing[curr] === 2) return false;
+    const q = [];
+    for (let i = 0; i < inDegrees.length; i++) {
+        const degree = inDegrees[i];
+        if (degree === 0) q.push(i);
+    }
+
+    const res = [];
+    while(q.length) {
+        let node = q.shift();
+        res.push(node);
+        numCourses--;
         
-        processing[curr] = 1;
-        let edge = adjList[curr];
+        let edge = adjList[node];
         for (let i = 0; i < edge.length; i++) {
-            if (dfs(edge[i])) return true;
+            let _e = edge[i];
+            inDegrees[_e]--;    
+            if (inDegrees[_e] === 0) {
+                q.push(_e);
+            }
         }
-        
-        processing[curr] = 2;
-        result.push(curr);
-        return false;
     }
     
-    for (var i = 0; i < numCourses; i++) {
-        if (dfs(i)) return [];
-    }
-    
-    return result;
-};
-
-
-
+    return numCourses === 0 ? res : [];
+}
 
 
 
