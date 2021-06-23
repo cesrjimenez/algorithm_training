@@ -4,106 +4,96 @@
  * @return {boolean}
  
  constraints:
-  - 1 <= numCourses <= 105
-  - 0 <= prerequisites.length <= 5000
-  - prerequisites[i].length == 2
-  - 0 <= ai, bi < numCourses
-  - All the pairs prerequisites[i] are unique.
-  
-  diagram:
-  > test case #1:
+ - 1 <= numCourses <= 105
+ - 0 <= prerequisites.length <= 5000
+ - prerequisites[i].length == 2
+ - 0 <= ai, bi < numCourses
+ - All the pairs prerequisites[i] are unique.
+ 
+ diagram:
+ > test case #1:
     - input: numCourses = 2, prerequisites = [[1,0]]
-    - output: false
+    - output: true
     
-    
-    numCourses = 2, prerequisites = [[1,0]]
-    
-    adjList = {
-      0: [1],
-      1: []
-    }
-    
-    topSort = [1,2]
-    topSort.length === numCourses // true
-    
-                    0   
-                   /    
-                  1    x
-  
-  > test case #2:
-    - input: numCourses = 2, prerequisites = [[1,0],[0,1]]
-    - output: false
-    
-    numCourses = 2, prerequisites = [[1,0],[0,1]]
-    
-    adjList = {
+    toFrom = {
         0: [1]
-        1: [0]
+        1: []
     }
-    visited = [1,1]
-    topSort = []
-    topSort.length === numCourses // false
+    
+    inDegree = [0,1]
+    
+    result = [0,1]
+    q = [
+    
+    ]
     
                     0  x
-                   /  
-                  1   x
-  
-  pcode:
-  - create topSort variable
-  - create adjList from prerequisite
-  - loop thru prerequisites and populate adjList
-  - create visited map
-  - create dfsPostOrder function w/ node parameter
-    - if visited[node] is 1 return true
-    - if visited[node] is 2 return false
-    - set visited[node] to 1
-    - loop thru node's neighbors
-        - if dfsPostOrder of neighbors[i] returns true
-            - return true
-    - visited[node] to 2
-    - push node to topSort
-    - return false
-  - loop thru numCourses
-    - dfsPostOrder w/ numCourses[i]
-  - return topSort
+                   /   
+                  1    x
+pcode:
+- create inDegree variable array fill zero
+- create adjList variable
+- populate adjList w prerequisites
+    - [to, from]
+    - adjList[from].push(to)
+    - inDegree[from]++
+- create result variable
+- create queue 
+- loop thru inDegree
+    - if inDegree is zero
+        - queue node
+- while queue is not empty
+    - let from = unshift
+    - result.push(from)
+    - neighbor = adjList[from]
+    - loop thru neighbor
+        - inDegree[neighbor[i]]--
+        - if inDegree[neighbor[i]] equal zero
+            - result push inDegree[neighbor[i]]
+- return result.length === numCourses
+
  */
 var canFinish = function(numCourses, prerequisites) {
-    let topSort = []
     let adjList = {};
     for (let i = 0; i < numCourses; i++) {
-        adjList[i] = [];
+        adjList[i] = []
     }
     
+    let inDegree = new Array(numCourses).fill(0);
     for (let i = 0; i < prerequisites.length; i++) {
         let [to, from] = prerequisites[i];
-        adjList[from].push(to)
+        adjList[from].push(to);
+        inDegree[to]++;
     }
     
-    let visited = new Array(numCourses).fill(0);
+    let queue = [];
+    for (let i = 0; i < inDegree.length; i++) {
+        if (!inDegree[i]) {
+            queue.push(i);
+        }
+    }
     
-    function dfsPostOrder(node) {
-        if (visited[node] === 1) return true;
-        if (visited[node] === 2) return false;
-        
-        visited[node] = 1;
+    let result = [];
+    while (queue.length) {
+        let node = queue.shift();
+        result.push(node);
         
         let neighbors = adjList[node];
         for (let i = 0; i < neighbors.length; i++) {
-            if (dfsPostOrder(neighbors[i])) {
-                return true;
+            let curr = neighbors[i];
+            inDegree[curr]--;
+            if (!inDegree[curr]) {
+                queue.push(curr);
             }
         }
-        
-        visited[node] = 2;
-        topSort.push(node);
-        return false;
     }
     
-    for (let i = 0; i < numCourses; i++) {
-        if (dfsPostOrder(i)) {
-            return false;
-        }
-    }
-    
-    return topSort.length === numCourses;
+    return result.length === numCourses;
 };
+
+
+
+
+
+
+
