@@ -7,6 +7,15 @@
  * @return {number}
  */
 
+/*
+Nuance of the K stops:
+
+Nice solution. Add some comment for clarification.
+temp array is needed here since in (i)th iteration, 
+we only want to relax nodes that are reachable from previous (i-1) iteration, 
+this differs from original Bellman-Ford code since now we have within K stops requirement.
+*/
+
 var findCheapestPrice = function(n, flights, src, dst, k) {
     let distance = new Array(n).fill(Infinity);
     distance[src] = 0;
